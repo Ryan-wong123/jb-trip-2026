@@ -5,7 +5,7 @@ window.TRIP = {
   budgetSGD: 400,
   title: "Aum's Birthday Getaway",
   dates: 'Tue 3 to Thu 5 Nov 2026',
-  intro: 'Happy birthday, Aum. Three days, two nights and every moment planned for you. Candlelit dinners, a midnight massage for two, baby capybaras, and a night of lights, all with you by my side.',
+  intro: 'Happy birthday, Aum. Three days, two nights and every moment planned for you.',
   people: 2,
 
   places: {
