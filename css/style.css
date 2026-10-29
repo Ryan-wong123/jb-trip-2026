@@ -140,3 +140,10 @@ tr.total td{border-top-color:var(--teal)}
 .foot{margin-left:auto; margin-right:auto; text-align:center}
 .warn{border-radius:16px}
 @media (prefers-reduced-motion:reduce){.fl{animation:none!important}}
+
+.secret{position:fixed; top:0; right:0; width:64px; height:64px; z-index:50; background:transparent; border:0; cursor:default; -webkit-tap-highlight-color:transparent; outline:none}
+.plan a{display:block; text-decoration:none; color:inherit}
+.plan{list-style:none; padding:12px 0; border-top:1px solid var(--line)}
+.plan:first-child{border-top:0}
+.plan a:hover h3{color:var(--teal)}
+.plan h3{font-family:var(--display); font-size:22px}

@@ -2,7 +2,7 @@
 
 A small interactive site for a 3-day, 2-night Johor Bahru trip (Tue 3 to Thu 5 Nov 2026, 2 people, staying at Paragon Suites @ CIQ).
 
-It shows the day-by-day plan, a cost breakdown with Low / Plan / High scenarios in RM or SGD, an interactive OpenStreetMap map with numbered pins, and Google Maps route buttons for each day (each route starts from the hotel).
+It shows the day-by-day plan, an interactive OpenStreetMap map with numbered pins, and Google Maps route buttons for each day (each route starts from the hotel). The cost breakdown lives on a separate page (`costs.html`), reached through an invisible button in the top-right corner of the itinerary page.
 
 ## Run it
 

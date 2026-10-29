@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cost Breakdown</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23B83A5C'/%3E%3Cpath d='M16 27S5 19 5 12a6 6 0 0 1 11-3.3A6 6 0 0 1 27 12c0 7-11 15-11 15z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<style>.costs{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:16px}</style>
+</head>
+<body>
+<div id="floaters" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="back" href="trip.html">&#10084; Back to the itinerary</a>
+      <p class="kicker">behind the scenes</p>
+      <h1>Cost <span class="name">breakdown</span></h1>
+      <p>2 people &middot; Tue 3 to Thu 5 Nov 2026</p>
+    </div>
+    <div class="seg" role="group" aria-label="Currency" id="curSeg">
+      <button type="button" data-cur="RM" aria-pressed="true">RM</button>
+      <button type="button" data-cur="SGD" aria-pressed="false">SGD</button>
+    </div>
+  </header>
+  <main class="costs" id="costs"></main>
+  <p class="hearts-div" aria-hidden="true">&#10084; &#10084; &#10084;</p>
+</div>
+<script src="js/floaters.js"></script>
+<script src="js/data.js"></script>
+<script src="js/costs.js"></script>
+</body>
+</html>

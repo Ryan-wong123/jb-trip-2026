@@ -47,61 +47,31 @@
   }
 
   function overviewHTML() {
-    var tot = grandTotal(), sgd = tot / T.rate, diff = Math.round(sgd - T.budgetSGD);
-    var verdict = diff > 0
-      ? 'About SGD ' + diff + ' over a SGD ' + T.budgetSGD + ' budget for the two of you.'
-      : 'About SGD ' + Math.abs(diff) + ' under a SGD ' + T.budgetSGD + ' budget for the two of you.';
     var rows = ['day1', 'day2', 'day3'].map(function (id) {
       var d = DAYS[id];
-      return '<tr><td><a href="#' + id + '">' + d.label + ', ' + d.date + '</a><small>' + d.title + '</small></td><td class="num">' + money(dayTotal(id)) + '</td></tr>';
+      return '<li class="plan"><a href="#' + id + '"><span class="muted">' + d.label + ', ' + d.date + '</span><h3>' + d.title + '</h3>' + (d.tagline ? '<p class="tagline" style="font-size:17px">' + d.tagline + '</p>' : '') + '</a></li>';
     }).join('');
-    rows += '<tr><td>Hotel, 2 nights<small>Paragon Suites @ CIQ, SGD 123 fixed</small></td><td class="num">' + money(HOTEL[state.sc]) + '</td></tr>';
-    rows += '<tr class="total"><td>Total</td><td class="num">' + money(tot) + '</td></tr>';
-    var grab = 0, fixed = 0, est = 0;
-    ['day1', 'day2', 'day3'].forEach(function (id) {
-      DAYS[id].costs.forEach(function (r) {
-        if (r.k === 'grab') grab += r[state.sc]; else if (r.k === 'fixed') fixed += r[state.sc]; else est += r[state.sc];
-      });
-    });
-    var alt = state.cur === 'RM' ? '&asymp; SGD ' + Math.round(sgd) : '&asymp; RM ' + Math.round(tot).toLocaleString('en-US');
     return '' +
       '<div class="card hero"><div class="hearts" aria-hidden="true">&#10084; &#10084; &#10084;</div><p>' + T.intro + '</p></div>' +
-      '<div class="card"><div class="eyebrow">' + SCN[state.sc] + ', ' + T.people + ' people</div>' +
-      '<div class="big" style="margin-top:8px">' + money(tot) + '<small>' + alt + '</small></div>' +
-      '<p class="muted" style="margin-top:10px">' + verdict + ' If your budget is per person, you are well inside it.</p></div>' +
-      '<div class="card"><h2>Cost by day</h2><div class="scroll" style="margin-top:6px"><table><tbody>' + rows + '</tbody></table></div></div>' +
-      '<div class="card"><h2>Where the money goes</h2><div class="scroll" style="margin-top:6px"><table><tbody>' +
-      '<tr><td>Confirmed prices<span class="chip fixed">Fixed</span><small>QQ, Light Festival, Capyba, spa, Hut Dining</small></td><td class="num">' + money(fixed) + '</td></tr>' +
-      '<tr><td>Estimated meals<span class="chip">Est.</span><small>City Square lunch, Haidilao, Day 3 breakfast</small></td><td class="num">' + money(est) + '</td></tr>' +
-      '<tr><td>Grab rides<span class="chip">Est.</span><small>One car for both of you</small></td><td class="num">' + money(grab) + '</td></tr>' +
-      '<tr><td>Hotel<span class="chip fixed">Fixed</span></td><td class="num">' + money(HOTEL[state.sc]) + '</td></tr>' +
-      '</tbody></table></div></div>' +
+      '<div class="card"><h2>Our three days</h2><ol class="stops" style="margin-top:6px">' + rows + '</ol></div>' +
       '<div class="warn"><strong>Check before you go.</strong> ' + DAYS.day1.warn + '</div>';
   }
 
   function dayHTML(id) {
-    var d = DAYS[id], sc = state.sc;
+    var d = DAYS[id];
     var stops = d.stops.map(function (s) {
       var p = P[s.p], sel = state.sel === s.p ? ' sel' : '';
       return '<li class="stop' + sel + '" data-pid="' + s.p + '" tabindex="0" role="button" aria-label="Show ' + p.name + ' on the map">' +
         '<span class="t">' + s.t + '</span><span class="badge ' + p.kind + '">' + p.n + '</span>' +
         '<div><h3>' + p.name + '</h3><p>' + s.note + '</p></div></li>';
     }).join('');
-    var rows = d.costs.map(function (r) {
-      var chip = r.k === 'fixed' ? '<span class="chip fixed">Fixed</span>' : (r.k === 'skip' ? '' : '<span class="chip">Est.</span>');
-      var val = r.k === 'skip' ? '<span class="muted">Skipped</span>' : money(r[sc]);
-      return '<tr><td>' + r.l + chip + '</td><td class="num">' + val + '</td></tr>';
-    }).join('');
-    rows += '<tr class="total"><td>' + d.label + ' total</td><td class="num">' + money(dayTotal(id)) + '</td></tr>';
     var warn = d.warn ? '<div class="warn"><strong>Check before you go.</strong> ' + d.warn + '</div>' : '';
     return '' +
       '<div class="card"><div class="daybar"><span class="dot" style="background:' + dayColor(d) + '"></span><span class="muted" style="font-weight:600">' + d.date + '</span></div>' +
       '<h2>' + d.title + '</h2>' + (d.tagline ? '<p class="tagline">' + d.tagline + '</p>' : '') +
       '<ol class="stops">' + stops + '</ol>' +
       '<a class="btn" href="' + dayRouteUrl(id) + '" target="_blank" rel="noopener">Open ' + d.label + ' route in Google Maps</a></div>' +
-      warn +
-      '<div class="card"><h2>Cost for ' + d.label + '</h2><p class="muted" style="font-size:13px;margin-top:2px">' + SCN[sc] + ', ' + T.people + ' people</p>' +
-      '<div class="scroll" style="margin-top:6px"><table><tbody>' + rows + '</tbody></table></div></div>';
+      warn;
   }
 
   function renderPanel() { el('panel').innerHTML = state.tab === 'overview' ? overviewHTML() : dayHTML(state.tab); }
@@ -190,11 +160,6 @@
       '<a class="go" href="' + placeUrl(p) + '" target="_blank" rel="noopener">Open in Google Maps</a>';
   }
 
-  function renderSegs() {
-    document.querySelectorAll('#scSeg button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-sc') === state.sc)); });
-    document.querySelectorAll('#curSeg button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-cur') === state.cur)); });
-  }
-
   function select(pid, pan) {
     state.sel = pid;
     renderPanel(); renderMap(false); renderDetail();
@@ -207,7 +172,7 @@
     var tab = TABS.some(function (t) { return t[0] === h; }) ? h : 'overview';
     state.tab = tab;
     state.sel = tab === 'overview' ? 'hotel' : DAYS[tab].stops[0].p;
-    renderTabs(); renderSegs(); renderPanel(); renderMap(true); renderDetail();
+    renderTabs(); renderPanel(); renderMap(true); renderDetail();
   }
   window.addEventListener('hashchange', routeFromHash);
 
@@ -215,14 +180,6 @@
     var b = e.target.closest('button[data-tab]'); if (!b) return;
     var t = b.getAttribute('data-tab');
     if (location.hash === '#' + t) routeFromHash(); else location.hash = t;
-  });
-  el('scSeg').addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-sc]'); if (!b) return;
-    state.sc = b.getAttribute('data-sc'); renderSegs(); renderPanel();
-  });
-  el('curSeg').addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-cur]'); if (!b) return;
-    state.cur = b.getAttribute('data-cur'); renderSegs(); renderPanel();
   });
   function pidFrom(e) { var n = e.target.closest('[data-pid]'); return n ? n.getAttribute('data-pid') : null; }
   ['legend', 'panel'].forEach(function (id) {
