@@ -1,0 +1,23 @@
+:root{--bg1:#FFE6EC; --bg2:#F7B6C8; --ink:#5B1A2E; --rose:#B8264F; --gold:#B8863B; color-scheme:light}
+@media (prefers-color-scheme: dark){:root{--bg1:#2A1119; --bg2:#12070B; --ink:#FFE9EE; --rose:#FF8FAE; --gold:#F0C070; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{height:100%; margin:0}
+body{background:radial-gradient(ellipse at 50% 35%,var(--bg1),var(--bg2)); color:var(--ink); font-family:'IBM Plex Sans','Segoe UI',system-ui,sans-serif; overflow:hidden}
+#fx{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:5}
+#floaters{position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0}
+.fl{position:absolute; bottom:-8vh; color:var(--rose); opacity:0; animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0) translateX(0) rotate(-8deg); opacity:0}10%{opacity:.35}90%{opacity:.25}100%{transform:translateY(-115vh) translateX(var(--dx)) rotate(10deg); opacity:0}}
+.stage{position:relative; z-index:2; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:20px 16px 28px; text-align:center; cursor:pointer; outline:none; -webkit-tap-highlight-color:transparent}
+.eyebrow{margin:0; font-size:13px; letter-spacing:.35em; text-transform:uppercase; color:var(--gold); font-weight:500}
+h1{margin:0; font-family:'Cormorant Garamond',Georgia,serif; font-weight:700; font-size:clamp(34px,8vw,64px); line-height:1.05; text-wrap:balance}
+h1 .name{font-style:italic; color:var(--rose); font-size:1.35em}
+.heart{width:min(62vw,52vh,380px); height:auto; margin:8px 0; filter:drop-shadow(0 14px 28px rgba(184,38,79,.45)); transform-origin:50% 60%; animation:beat 1.6s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.08)}28%{transform:scale(1)}42%{transform:scale(1.05)}70%{transform:scale(1)}}
+.hint{margin:0; font-size:14px; color:var(--ink); opacity:.7; animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.stage:focus-visible .heart{outline:3px solid var(--gold); outline-offset:10px; border-radius:30%}
+.go .heart{animation:pop .9s cubic-bezier(.2,.9,.3,1) forwards}
+@keyframes pop{0%{transform:scale(1)}30%{transform:scale(1.35)}100%{transform:scale(14); opacity:0}}
+.go h1,.go .eyebrow,.go .hint{transition:opacity .5s; opacity:0; animation:none}
+.veil{position:fixed; inset:0; z-index:9; background:var(--rose); opacity:0; pointer-events:none; transition:opacity .6s ease}
+@media (prefers-reduced-motion:reduce){.heart,.hint,.fl{animation:none!important} .go .heart{animation:none!important; opacity:0}}

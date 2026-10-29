@@ -3,8 +3,9 @@
 window.TRIP = {
   rate: 3.3, // RM per SGD
   budgetSGD: 400,
-  title: 'JB Trip 2026',
+  title: "Aum's Birthday Getaway",
   dates: 'Tue 3 to Thu 5 Nov 2026',
+  intro: 'Happy birthday, Aum. Three days, two nights and every moment planned for you. Candlelit dinners, a midnight massage for two, baby capybaras, and a night of lights, all with you by my side.',
   people: 2,
 
   places: {
@@ -49,13 +50,14 @@ window.TRIP = {
   hotelCost: { label: 'Hotel, 2 nights (SGD 123)', low: 406, plan: 406, high: 406 },
 
   days: {
-    day1: { label: 'Day 1', date: 'Tue 3 Nov', title: 'Arrive, Masai dinner and late-night spa', color: '#0B7A86', colorDark: '#4CC3D0',
+    day1: { label: 'Day 1', date: 'Tue 3 Nov', title: 'Arrival, a feast for two and a midnight massage',
+      tagline: 'The first evening of your birthday weekend.', color: '#B83A5C', colorDark: '#FF8FAE',
       stops: [
-        { p: 'hotel', t: '5 to 6pm', note: 'Arrive in JB and check in.' },
-        { p: 'qq', t: '7:00pm', note: 'Grill and steamboat buffet dinner.' },
-        { p: 'hotel', t: '9:30pm', note: 'Back to the hotel to freshen up.' },
-        { p: 'spa', t: '12:00am', note: 'Set out around midnight. Massage for 2.' },
-        { p: 'hotel', t: '2:00am', note: 'Back to the hotel to sleep.' }
+        { p: 'hotel', t: '5 to 6pm', note: 'We arrive, settle in and our weekend begins.' },
+        { p: 'qq', t: '7:00pm', note: 'Our first dinner together: grill and steamboat, as much as you like.' },
+        { p: 'hotel', t: '9:30pm', note: 'A little time to freshen up and get cosy.' },
+        { p: 'spa', t: '12:00am', note: 'A midnight massage for two to melt the day away.' },
+        { p: 'hotel', t: '2:00am', note: 'Home to our room to rest, together.' }
       ],
       warn: 'The spa leg starts around midnight, so it is really early Wed 4 Nov, and you would get to bed around 2am. Day 2 starts at 10:30am, so check the last booking time at the spa and that Grab is easy to get at that hour.',
       costs: [
@@ -66,14 +68,15 @@ window.TRIP = {
         { l: 'Bangkok Spa, 2 people', k: 'fixed', low: 202, plan: 202, high: 202 },
         { l: 'Grab: Bangkok Spa to hotel', k: 'grab', low: 7, plan: 8, high: 10 }
       ] },
-    day2: { label: 'Day 2', date: 'Wed 4 Nov', title: 'City Square, Capyba, Hut Dining and Light Festival', color: '#C4501A', colorDark: '#FF9A63',
+    day2: { label: 'Day 2', date: 'Wed 4 Nov', title: 'Cuddly critters, a birthday dinner and a night of lights',
+      tagline: 'Your birthday day: gentle, playful and glowing.', color: '#B8863B', colorDark: '#F0C070',
       stops: [
-        { p: 'hotel', t: '10:30am', note: 'Set off from the hotel. No breakfast today.' },
-        { p: 'cs', t: '11:00am', note: 'Lunch at the mall.' },
-        { p: 'cap', t: '1:30pm', note: 'About 2 hours with the animals.' },
-        { p: 'hut', t: '6:00pm', note: 'Essence tier dinner buffet. Arrive early to browse AEON Tebrau City before the 6pm sitting.' },
-        { p: 'sbs', t: '8:15pm', note: 'Light Festival. About 15 minutes from AEON Tebrau City.' },
-        { p: 'hotel', t: '10:00pm', note: 'Back to the hotel.' }
+        { p: 'hotel', t: '10:30am', note: 'Set off hand in hand. No breakfast today, we save room for lunch.' },
+        { p: 'cs', t: '11:00am', note: 'A relaxed lunch date to start your birthday.' },
+        { p: 'cap', t: '1:30pm', note: 'Feed the capybaras together and make sweet memories.' },
+        { p: 'hut', t: '6:00pm', note: 'Your birthday dinner, the Essence tier. Arrive early to stroll through AEON Tebrau City first.' },
+        { p: 'sbs', t: '8:15pm', note: 'Wander under the lights together, the perfect end to your birthday.' },
+        { p: 'hotel', t: '10:00pm', note: 'Back to our room, a perfect day behind us.' }
       ],
       warn: 'Google lists SBS Resort Permas as closed on Tuesdays, so Wednesday should be fine, but confirm the Light Festival is open before you rely on the RM 40 tickets. Hut Dining runs 6pm to 10pm, so keep the buffet to about 2 hours to reach the festival. Capyba finishes around 3:30pm, which leaves free time before the 6pm sitting.',
       costs: [
@@ -88,11 +91,12 @@ window.TRIP = {
         { l: 'Light Festival entry, 2 people', k: 'fixed', low: 40, plan: 40, high: 40 },
         { l: 'Grab: Light Festival to hotel', k: 'grab', low: 11, plan: 13, high: 16 }
       ] },
-    day3: { label: 'Day 3', date: 'Thu 5 Nov', title: 'Check out, Haidilao, home', color: '#2C62C9', colorDark: '#7FA8FF',
+    day3: { label: 'Day 3', date: 'Thu 5 Nov', title: 'A last hotpot lunch together',
+      tagline: 'One more meal for two before we head home.', color: '#7B4B94', colorDark: '#C9A0E0',
       stops: [
-        { p: 'hotel', t: '11:30am', note: 'Breakfast nearby, check out, then set off.' },
-        { p: 'hdl', t: '12:00pm', note: 'Hotpot lunch.' },
-        { p: 'ciq', t: '2:00pm', note: 'Cross the causeway before the evening queues.' }
+        { p: 'hotel', t: '11:30am', note: 'A slow morning, a nearby breakfast, then check out.' },
+        { p: 'hdl', t: '12:00pm', note: 'Sharing a bubbling hotpot, our last meal of the trip.' },
+        { p: 'ciq', t: '2:00pm', note: 'Home with a full heart, ahead of the evening queues.' }
       ],
       warn: null,
       costs: [

@@ -65,6 +65,7 @@
     });
     var alt = state.cur === 'RM' ? '&asymp; SGD ' + Math.round(sgd) : '&asymp; RM ' + Math.round(tot).toLocaleString('en-US');
     return '' +
+      '<div class="card hero"><div class="hearts" aria-hidden="true">&#10084; &#10084; &#10084;</div><p>' + T.intro + '</p></div>' +
       '<div class="card"><div class="eyebrow">' + SCN[state.sc] + ', ' + T.people + ' people</div>' +
       '<div class="big" style="margin-top:8px">' + money(tot) + '<small>' + alt + '</small></div>' +
       '<p class="muted" style="margin-top:10px">' + verdict + ' If your budget is per person, you are well inside it.</p></div>' +
@@ -79,7 +80,8 @@
       '<div class="card"><h2>Good to know</h2><ul class="notes">' +
       '<li>The hotel is in the city centre, about 500 m from CIQ and close to Zenith Mall and City Square. Rides to Masai, Capyba and AEON Tebrau City are longer.</li>' +
       '<li>Google lists the hotel building office as open 9am to 5:30pm and you arrive around 5 to 6pm. Confirm self check-in or late key collection with the host.</li>' +
-      '<li>Capyba is outdoors and the afternoon is hot, so bring water and a hat.</li>' +
+      '<li>Capyba is outdoors and the afternoon is hot, so bring water and a hat.</li>'+
+      '<li>Little romantic touches to arrange: a birthday message or cake with Hut Dining when you book, flowers waiting in the room, and a photo together under the Light Festival lights.</li>' +
       '<li>JB City Square was under renovation in recent reviews, so some shops may be closed.</li>' +
       '<li>Fares can rise in the evening and on festival night. Use the High setting above for a cautious total.</li>' +
       '</ul></div>';
@@ -102,7 +104,7 @@
     var warn = d.warn ? '<div class="warn"><strong>Check before you go.</strong> ' + d.warn + '</div>' : '';
     return '' +
       '<div class="card"><div class="daybar"><span class="dot" style="background:' + dayColor(d) + '"></span><span class="muted" style="font-weight:600">' + d.date + '</span></div>' +
-      '<h2>' + d.title + '</h2>' +
+      '<h2>' + d.title + '</h2>' + (d.tagline ? '<p class="tagline">' + d.tagline + '</p>' : '') +
       '<ol class="stops">' + stops + '</ol>' +
       '<a class="btn" href="' + dayRouteUrl(id) + '" target="_blank" rel="noopener">Open ' + d.label + ' route in Google Maps</a></div>' +
       warn +

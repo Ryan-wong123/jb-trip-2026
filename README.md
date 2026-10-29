@@ -1,4 +1,4 @@
-# JB Trip 2026
+# Our Birthday Getaway (JB Trip 2026)
 
 A small interactive site for a 3-day, 2-night Johor Bahru trip (Tue 3 to Thu 5 Nov 2026, 2 people, staying at Paragon Suites @ CIQ).
 
@@ -6,7 +6,7 @@ It shows the day-by-day plan, a cost breakdown with Low / Plan / High scenarios 
 
 ## Run it
 
-No build step. Open `index.html` in a browser. It needs internet for the map tiles, Leaflet and fonts.
+No build step. Open `index.html` in a browser. It is the birthday welcome page; clicking anywhere opens the itinerary (`trip.html`). It needs internet for the map tiles, Leaflet and fonts.
 
 ## Edit it
 
