@@ -128,26 +128,37 @@
 
   // Real driving geometry from the public OSRM server, cached per day. Falls back to a dashed straight line if it is unreachable.
   var roadCache = {}, drawToken = 0;
+  var ROUTERS = [
+    'https://router.project-osrm.org/route/v1/driving/',
+    'https://routing.openstreetmap.de/routed-car/route/v1/driving/'
+  ];
+  function tryRouter(i, tail) {
+    if (i >= ROUTERS.length) return Promise.reject(new Error('all routers failed'));
+    var ctl = new AbortController(), timer = setTimeout(function () { ctl.abort(); }, 9000);
+    return fetch(ROUTERS[i] + tail, { signal: ctl.signal }).then(function (r) { clearTimeout(timer); return r.json(); }).then(function (j) {
+      if (!j.routes || !j.routes[0]) throw new Error('no route');
+      return j.routes[0].geometry.coordinates.map(function (c) { return [c[1], c[0]]; });
+    }).catch(function () { clearTimeout(timer); return tryRouter(i + 1, tail); });
+  }
   function fetchRoad(id) {
     if (roadCache[id]) return roadCache[id];
     var coords = DAYS[id].stops.map(function (s) { return P[s.p].lng + ',' + P[s.p].lat; }).join(';');
-    var url = 'https://router.project-osrm.org/route/v1/driving/' + coords + '?overview=full&geometries=geojson';
-    roadCache[id] = fetch(url).then(function (r) { return r.json(); }).then(function (j) {
-      if (!j.routes || !j.routes[0]) throw new Error('no route');
-      return j.routes[0].geometry.coordinates.map(function (c) { return [c[1], c[0]]; });
-    });
+    roadCache[id] = tryRouter(0, coords + '?overview=full&geometries=geojson');
     roadCache[id].catch(function () { delete roadCache[id]; });
     return roadCache[id];
   }
+  function setStatus(id, txt) { var n = document.getElementById('rs-' + id); if (n) n.textContent = txt; }
   function drawRoute(id) {
     var d = DAYS[id], token = drawToken;
     var straight = L.polyline(d.stops.map(function (s) { return [P[s.p].lat, P[s.p].lng]; }),
       { color: dayColor(d), weight: 3, opacity: 0.6, dashArray: '8 7' }).addTo(layer);
+    setStatus(id, 'loading road route...');
     fetchRoad(id).then(function (pts) {
       if (token !== drawToken) return;
       layer.removeLayer(straight);
       L.polyline(pts, { color: dayColor(d), weight: 4, opacity: 0.9, lineJoin: 'round' }).addTo(layer).bringToBack();
-    }).catch(function () {});
+      setStatus(id, 'by road');
+    }).catch(function () { if (token === drawToken) setStatus(id, 'straight line only, road service unreachable'); });
   }
 
   function renderMap(refit) {
@@ -175,7 +186,7 @@
     }).join('');
     el('keyline').innerHTML = routes().map(function (id) {
       var d = DAYS[id];
-      return '<span><i style="border-color:' + dayColor(d) + '"></i>' + d.label + ' route</span>';
+      return '<span><i style="border-color:' + dayColor(d) + '"></i>' + d.label + ' route (<span id="rs-' + id + '"></span>)</span>';
     }).join('');
   }
 
