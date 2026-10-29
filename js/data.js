@@ -16,23 +16,23 @@ window.TRIP = {
       addr: 'Jalan Permas Barat, Taman Perindustrian Sri Plentong, 81750 Masai, Johor',
       hours: 'Open 4pm to 12am daily. Buffet for 2 is RM 174.',
       lat: 1.4977421, lng: 103.8293956, pid: 'ChIJr-vUaRtr2jERip5brdpreqo' },
-    sbs: { n: 3, kind: 'do', name: 'Light Festival, SBS Resort Permas', short: 'Light Festival',
+    sbs: { n: 7, kind: 'do', name: 'Light Festival, SBS Resort Permas', short: 'Light Festival',
       addr: 'Persiaran Plentong Baru, Kampung Plentong Baru, 81750 Johor Bahru',
-      hours: 'Entry for 2 is RM 40. Google lists SBS Resort as closed on Tuesdays and 3 Nov is a Tuesday, so confirm the festival is open that night.',
+      hours: 'Entry for 2 is RM 40. Google lists SBS Resort as closed on Tuesdays. It is now on Day 2 (Wed 4 Nov), but still confirm the festival is open that night.',
       lat: 1.5074348, lng: 103.8137629, pid: 'ChIJ4e_g4u1t2jER37WtjG0am2U' },
-    cs: { n: 4, kind: 'eat', name: 'Johor Bahru City Square', short: 'City Square',
+    cs: { n: 3, kind: 'eat', name: 'Johor Bahru City Square', short: 'City Square',
       addr: 'Ibrahim International Business District, 106-108, Jalan Wong Ah Fook, 80888 Johor Bahru',
       hours: 'Lunch spot. Mall open 10am to 10pm. Recent reviews say parts of the mall are under renovation.',
       lat: 1.4616534, lng: 103.7638662, pid: 'ChIJZ6vyT8MS2jERZbHkx3oUHnQ' },
-    cap: { n: 5, kind: 'do', name: 'Capyba Pet Farm', short: 'Capyba',
+    cap: { n: 4, kind: 'do', name: 'Capyba Pet Farm', short: 'Capyba',
       addr: 'PTD 68149 P8, Jalan Persisiran Sutera Danga 1, Taman Sutera Utama, 81300 Skudai, Johor',
       hours: 'Open 9:30am to 6:30pm daily. Entry and feed for 2 is RM 70. The afternoon is hot, so bring water and a hat.',
       lat: 1.5041732, lng: 103.6700501, pid: 'ChIJyX3dIUdz2jERVSNVccCmTn0' },
-    spa: { n: 6, kind: 'do', name: 'Bangkok Spa Taman Pelangi', short: 'Bangkok Spa',
+    spa: { n: 5, kind: 'do', name: 'Bangkok Spa Taman Pelangi', short: 'Bangkok Spa',
       addr: 'No 58 to 62B, Jalan Abiad, Taman Tebrau Jaya, 80400 Johor Bahru',
       hours: 'Open 11am to 5am. Massage for 2 is RM 202.',
       lat: 1.4824739, lng: 103.7689644, pid: 'ChIJ43g-sC5t2jERxiPAvNOd1Z8' },
-    hut: { n: 7, kind: 'eat', name: 'Hut Dining Buffet, AEON Tebrau City', short: 'Hut Dining',
+    hut: { n: 6, kind: 'eat', name: 'Hut Dining Buffet, AEON Tebrau City', short: 'Hut Dining',
       addr: 'S45, Second Floor, AEON Mall Tebrau City, Jalan Desa Tebrau, Taman Desa Tebrau, 81100 Johor Bahru',
       hours: 'Dinner sitting 6pm to 10pm. Essence tier for 2 is RM 439.',
       lat: 1.5492688, lng: 103.79641, pid: 'ChIJZ-qQXhlt2jERGRwq2I-1EH8' },
@@ -49,31 +49,29 @@ window.TRIP = {
   hotelCost: { label: 'Hotel, 2 nights (SGD 123)', low: 406, plan: 406, high: 406 },
 
   days: {
-    day1: { label: 'Day 1', date: 'Tue 3 Nov', title: 'Arrive, Masai and Permas', color: '#0B7A86', colorDark: '#4CC3D0',
+    day1: { label: 'Day 1', date: 'Tue 3 Nov', title: 'Arrive and Masai dinner', color: '#0B7A86', colorDark: '#4CC3D0',
       stops: [
         { p: 'hotel', t: '5 to 6pm', note: 'Arrive in JB and check in.' },
         { p: 'qq', t: '7:00pm', note: 'Grill and steamboat buffet dinner.' },
-        { p: 'sbs', t: '8:30pm', note: 'Light Festival. A short ride from QQ.' },
-        { p: 'hotel', t: '10:00pm', note: 'Back to the hotel.' }
+        { p: 'hotel', t: '9:30pm', note: 'Back to the hotel.' }
       ],
-      warn: 'Google lists SBS Resort Permas as closed on Tuesdays, and 3 Nov is a Tuesday. Confirm the Light Festival is open before you rely on the RM 40 tickets.',
+      warn: null,
       costs: [
         { l: 'Grab: hotel to QQ Masai', k: 'grab', low: 12, plan: 14, high: 18 },
         { l: 'QQ JB Grill & Steamboat Buffet, 2 people', k: 'fixed', low: 174, plan: 174, high: 174 },
-        { l: 'Grab: QQ to Light Festival', k: 'grab', low: 6, plan: 7, high: 9 },
-        { l: 'Light Festival entry, 2 people', k: 'fixed', low: 40, plan: 40, high: 40 },
-        { l: 'Grab: Light Festival to hotel', k: 'grab', low: 11, plan: 13, high: 16 }
+        { l: 'Grab: QQ to hotel', k: 'grab', low: 12, plan: 14, high: 18 }
       ] },
-    day2: { label: 'Day 2', date: 'Wed 4 Nov', title: 'City Square, Capyba, spa and Hut Dining', color: '#C4501A', colorDark: '#FF9A63',
+    day2: { label: 'Day 2', date: 'Wed 4 Nov', title: 'City Square, Capyba, spa, Hut Dining and Light Festival', color: '#C4501A', colorDark: '#FF9A63',
       stops: [
         { p: 'hotel', t: '10:30am', note: 'Set off from the hotel. No breakfast today.' },
         { p: 'cs', t: '11:00am', note: 'Lunch at the mall.' },
         { p: 'cap', t: '1:30pm', note: 'About 2 hours with the animals.' },
         { p: 'spa', t: '4:45pm', note: 'Massage for 2.' },
         { p: 'hut', t: '6:30pm', note: 'Essence tier dinner buffet.' },
-        { p: 'hotel', t: '9:00pm', note: 'Back to the hotel.' }
+        { p: 'sbs', t: '8:45pm', note: 'Light Festival. About 15 minutes from AEON Tebrau City.' },
+        { p: 'hotel', t: '10:30pm', note: 'Back to the hotel.' }
       ],
-      warn: null,
+      warn: 'Google lists SBS Resort Permas as closed on Tuesdays, so Wednesday should be fine, but confirm the Light Festival is open before you rely on the RM 40 tickets. Hut Dining runs 6pm to 10pm, so keep the buffet to about 2 hours to reach the festival.',
       costs: [
         { l: 'Breakfast skipped', k: 'skip', low: 0, plan: 0, high: 0 },
         { l: 'Grab: hotel to City Square', k: 'grab', low: 5, plan: 6, high: 8 },
@@ -84,7 +82,9 @@ window.TRIP = {
         { l: 'Bangkok Spa, 2 people', k: 'fixed', low: 202, plan: 202, high: 202 },
         { l: 'Grab: spa to AEON Tebrau City', k: 'grab', low: 10, plan: 12, high: 16 },
         { l: 'Hut Dining Buffet, Essence tier, 2 people', k: 'fixed', low: 439, plan: 439, high: 439 },
-        { l: 'Grab: AEON Tebrau City to hotel', k: 'grab', low: 14, plan: 16, high: 20 }
+        { l: 'Grab: AEON Tebrau City to Light Festival', k: 'grab', low: 10, plan: 12, high: 15 },
+        { l: 'Light Festival entry, 2 people', k: 'fixed', low: 40, plan: 40, high: 40 },
+        { l: 'Grab: Light Festival to hotel', k: 'grab', low: 11, plan: 13, high: 16 }
       ] },
     day3: { label: 'Day 3', date: 'Thu 5 Nov', title: 'Check out, Haidilao, home', color: '#2C62C9', colorDark: '#7FA8FF',
       stops: [

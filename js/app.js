@@ -77,7 +77,7 @@
       '</tbody></table></div></div>' +
       '<div class="warn"><strong>Check before you go.</strong> ' + DAYS.day1.warn + '</div>' +
       '<div class="card"><h2>Good to know</h2><ul class="notes">' +
-      '<li>The hotel is in the city centre, about 500 m from CIQ and close to Zenith Mall and City Square. Rides to Masai, Permas, Capyba and AEON Tebrau City are longer.</li>' +
+      '<li>The hotel is in the city centre, about 500 m from CIQ and close to Zenith Mall and City Square. Rides to Masai, Capyba and AEON Tebrau City are longer.</li>' +
       '<li>Google lists the hotel building office as open 9am to 5:30pm and you arrive around 5 to 6pm. Confirm self check-in or late key collection with the host.</li>' +
       '<li>Capyba is outdoors and the afternoon is hot, so bring water and a hat.</li>' +
       '<li>JB City Square was under renovation in recent reviews, so some shops may be closed.</li>' +
