@@ -36,11 +36,6 @@
       '<tr class="total"><td>Total</td><td class="num">' + money(tot) + '</td></tr>' +
       '</tbody></table></div></div>';
     document.getElementById('costs').innerHTML = html;
-    document.querySelectorAll('#curSeg button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-cur') === cur)); });
   }
-  document.getElementById('curSeg').addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-cur]'); if (!b) return;
-    cur = b.getAttribute('data-cur'); render();
-  });
   render();
 })();
