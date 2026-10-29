@@ -13,11 +13,13 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="floaters" aria-hidden="true"></div>
 <div class="wrap">
   <header class="top">
     <div>
       <a class="back" href="index.html" aria-label="Back to the welcome page">&#10084; Back</a>
-      <h1>Aum's Birthday Getaway</h1>
+      <p class="kicker">for my love</p>
+      <h1><span class="name">Aum's</span> Birthday Getaway</h1>
       <p>Johor Bahru &middot; Tue 3 to Thu 5 Nov 2026 &middot; just the two of us &middot; 3 days, 2 nights &middot; Paragon Suites @ CIQ</p>
     </div>
     <div class="ctrls">
@@ -47,10 +49,12 @@
     </aside>
   </main>
 
+  <p class="hearts-div" aria-hidden="true">&#10084; &#10084; &#10084;</p>
   <p class="foot">Prices marked Fixed were confirmed by the traveller. Everything else, including every Grab fare, is an estimate, so check live fares in the Grab app. SGD figures use RM 3.30 per SGD and are rounded. Map data &copy; OpenStreetMap contributors. Routes are drawn along roads using the public OSRM routing service (a dashed line shows if it can't be reached), and may differ a little from Google Maps, so use the Google Maps button on each day for live directions.</p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="js/floaters.js"></script>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
 </body>

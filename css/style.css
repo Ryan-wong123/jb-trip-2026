@@ -1,6 +1,6 @@
 /* Layout: plan and costs on the left, sticky map on the right; stacked with the map first on phones */
 :root{
-  --bg:#FBEFF0; --surface:#FFFFFF; --ink:#3B1722; --muted:#7A5A64; --line:#EBD3D8;
+  --bg:#FFE6EC; --surface:#FFFFFF; --ink:#3B1722; --muted:#7A5A64; --line:#EBD3D8;
   --teal:#B83A5C; --orange:#B8863B; --blue:#7B4B94; --on-accent:#FFFFFF;
   --chip:#F7E1E5; --warn-bg:#FFF3DC; --warn-ink:#6E4A12;
   --display:'Cormorant Garamond',Georgia,'Times New Roman',serif;
@@ -106,3 +106,37 @@ tr.total td{border-top:2px solid var(--ink); font-weight:600}
 body{background-image:radial-gradient(ellipse at top,var(--chip),transparent 60%); background-repeat:no-repeat}
 
 .back{display:inline-block; font-size:13px; font-weight:600; color:var(--teal); text-decoration:none; margin-bottom:6px}
+
+/* ---- Match the welcome page ---- */
+body{background:radial-gradient(ellipse at 50% 0%,#FFE6EC 0%,#F9C3D1 100%) fixed; position:relative}
+@media (prefers-color-scheme: dark){body{background:radial-gradient(ellipse at 50% 0%,#2A1119 0%,#12070B 100%) fixed}}
+#floaters{position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0}
+.fl{position:absolute; bottom:-8vh; color:var(--teal); opacity:0; animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0) translateX(0) rotate(-8deg); opacity:0}10%{opacity:.3}90%{opacity:.2}100%{transform:translateY(-115vh) translateX(var(--dx)) rotate(10deg); opacity:0}}
+.wrap{position:relative; z-index:1}
+.kicker{font-size:13px; letter-spacing:.35em; text-transform:uppercase; color:var(--orange); font-weight:500; margin:0 0 4px}
+h1 .name{font-style:italic; color:var(--teal)}
+.top h1{text-shadow:0 2px 18px rgba(184,38,79,.18)}
+.card{border-radius:20px; background:color-mix(in srgb,var(--surface) 88%,transparent); backdrop-filter:blur(6px); box-shadow:0 10px 30px -14px rgba(184,38,79,.35); border-color:color-mix(in srgb,var(--teal) 22%,var(--line))}
+.tabs button{border-radius:999px; background:color-mix(in srgb,var(--surface) 85%,transparent)}
+.tabs button[aria-selected="true"]{background:linear-gradient(135deg,#FF8FAE,#B8264F); color:#fff; border-color:transparent; box-shadow:0 6px 16px -6px rgba(184,38,79,.6)}
+.seg button[aria-pressed="true"]{background:linear-gradient(135deg,#FF8FAE,#B8264F); color:#fff}
+.big{font-style:italic; color:var(--teal)}
+.big small{font-style:normal}
+h2::after{content:"\2665"; font-size:.5em; color:var(--teal); margin-left:.5em; vertical-align:.25em; opacity:.8}
+.badge{box-shadow:0 3px 8px -2px rgba(184,38,79,.5)}
+.badge.stay{background:linear-gradient(135deg,#8E2A47,#5B1A2E); color:#fff}
+.badge.eat{background:linear-gradient(135deg,#E0B15F,#B8863B); color:#2a1708}
+.badge.do{background:linear-gradient(135deg,#FF8FAE,#B8264F); color:#fff}
+.pinicon.stay{background:linear-gradient(135deg,#8E2A47,#5B1A2E)}
+.pinicon.eat{background:linear-gradient(135deg,#E0B15F,#B8863B); color:#2a1708}
+.pinicon.do{background:linear-gradient(135deg,#FF8FAE,#B8264F)}
+.btn{border-radius:999px; border-color:var(--teal); color:var(--teal)}
+.btn:hover{background:linear-gradient(135deg,#FF8FAE,#B8264F); color:#fff; border-color:transparent}
+.map{border-radius:14px}
+.stop.sel{background:color-mix(in srgb,var(--teal) 12%,transparent)}
+tr.total td{border-top-color:var(--teal)}
+.hearts-div{text-align:center; color:var(--teal); letter-spacing:.6em; font-size:13px; margin:28px 0 0; opacity:.8}
+.foot{margin-left:auto; margin-right:auto; text-align:center}
+.warn{border-radius:16px}
+@media (prefers-reduced-motion:reduce){.fl{animation:none!important}}
