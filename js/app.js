@@ -126,16 +126,37 @@
     layer = L.layerGroup().addTo(map);
   }
 
+  // Real driving geometry from the public OSRM server, cached per day. Falls back to a dashed straight line if it is unreachable.
+  var roadCache = {}, drawToken = 0;
+  function fetchRoad(id) {
+    if (roadCache[id]) return roadCache[id];
+    var coords = DAYS[id].stops.map(function (s) { return P[s.p].lng + ',' + P[s.p].lat; }).join(';');
+    var url = 'https://router.project-osrm.org/route/v1/driving/' + coords + '?overview=full&geometries=geojson';
+    roadCache[id] = fetch(url).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j.routes || !j.routes[0]) throw new Error('no route');
+      return j.routes[0].geometry.coordinates.map(function (c) { return [c[1], c[0]]; });
+    });
+    roadCache[id].catch(function () { delete roadCache[id]; });
+    return roadCache[id];
+  }
+  function drawRoute(id) {
+    var d = DAYS[id], token = drawToken;
+    var straight = L.polyline(d.stops.map(function (s) { return [P[s.p].lat, P[s.p].lng]; }),
+      { color: dayColor(d), weight: 3, opacity: 0.6, dashArray: '8 7' }).addTo(layer);
+    fetchRoad(id).then(function (pts) {
+      if (token !== drawToken) return;
+      layer.removeLayer(straight);
+      L.polyline(pts, { color: dayColor(d), weight: 4, opacity: 0.9, lineJoin: 'round' }).addTo(layer).bringToBack();
+    }).catch(function () {});
+  }
+
   function renderMap(refit) {
     var ids = visibleIds();
     if (map) {
+      drawToken++;
       layer.clearLayers();
       var all = [];
-      routes().forEach(function (id) {
-        var d = DAYS[id];
-        var pts = d.stops.map(function (s) { return [P[s.p].lat, P[s.p].lng]; });
-        L.polyline(pts, { color: dayColor(d), weight: 3, opacity: 0.9, dashArray: '8 7' }).addTo(layer);
-      });
+      routes().forEach(function (id) { drawRoute(id); });
       ids.forEach(function (id) {
         var p = P[id], sel = id === state.sel;
         var icon = L.divIcon({
